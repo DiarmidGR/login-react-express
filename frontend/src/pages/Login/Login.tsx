@@ -1,4 +1,3 @@
-import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -57,7 +56,7 @@ const Login: React.FC = () => {
           <h1 className="login-header switzer-bold text-5xl">Login</h1>
             <input
               type="text"
-              className="login-input switzer-regular text-2xl bg-(--third-color) text-(--secondary-color) rounded-lg border-none p-1 focus:outline-none"
+              className="login-input switzer-regular"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -65,7 +64,7 @@ const Login: React.FC = () => {
             />
             <input
               type="password"
-              className="login-input switzer-regular text-2xl bg-(--third-color) text-(--secondary-color) rounded-lg border-none p-1 focus:outline-none"
+              className="login-input switzer-regular"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
