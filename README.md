@@ -1,6 +1,6 @@
 ### Features
 
-- JSON Web Token (JWT) implementation on API .
+- JSON Web Token (JWT) implementation on API endpoints.
 - Route limiting on login and register endpoints.
 - Redis caching, used for limiting as well as future data caching.
 - MySQL database integration.
