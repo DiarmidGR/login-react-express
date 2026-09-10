@@ -51,13 +51,13 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="login-layout">
+    <>
       <div className="login-container">
         <form onSubmit={handleLogin} className="login-form">
-          <h1 className="login-header switzer-bold">Login to Your Account</h1>
+          <h1 className="login-header switzer-bold text-5xl">Login</h1>
             <input
               type="text"
-              className="login-input switzer-regular"
+              className="login-input switzer-regular text-2xl bg-(--third-color) text-(--secondary-color) rounded-lg border-none p-1 focus:outline-none"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -65,7 +65,7 @@ const Login: React.FC = () => {
             />
             <input
               type="password"
-              className="login-input switzer-regular"
+              className="login-input switzer-regular text-2xl bg-(--third-color) text-(--secondary-color) rounded-lg border-none p-1 focus:outline-none"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -81,15 +81,15 @@ const Login: React.FC = () => {
           <button type="submit" className="login-button switzer-bold">Sign In</button>
         </form>
       </div>
-      <div className="register-container">
-        <button className="switzer-bold" onClick={() => setIsRegisterOpen(true)}>Register User</button>
-        <button className="guest-button switzer-bold" onClick={() => navigate("/")}>Continue as Guest</button>
-      </div>
+
+      <button className="switzer-bold" onClick={() => setIsRegisterOpen(true)}>Register User</button>
+      <button className="guest-button switzer-bold" onClick={() => navigate("/")}>Continue as Guest</button>
+      
       <RegisterModal
         isOpen={isRegisterOpen}
         onClose={() => setIsRegisterOpen(false)}
       />
-    </div>
+    </>
   );
 };
 export default Login;
