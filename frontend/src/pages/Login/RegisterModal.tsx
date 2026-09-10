@@ -1,7 +1,5 @@
-import "./RegisterModal.css";
 import { useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
 
 interface RegisterModalProps {
   isOpen: boolean;
@@ -31,7 +29,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose }) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast.error("Passwords do not match.");
+      console.error("Passwords do not match.");
       return;
     }
 
@@ -41,35 +39,35 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose }) => {
         username,
         password,
       }, { withCredentials: true });
-      toast.success("Account created! You can now log in.");
+      console.log("Account created! You can now log in.");
       handleClose();
     } catch (err) {
-      toast.error("Registration failed. Try a different username.");
+      console.error("Registration failed. Try a different username.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="modal-overlay" onClick={handleClose}>
+    <div className="flex fixed inset-0 justify-center items-center bg-black/50" onClick={handleClose}>
       <div
-        className="modal-content"
+        className="modal-content bg-(--secondary-dark) rounded-lg p-6 max-w-420 w-90 shadow-lg relative"
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="modal-close-button" onClick={handleClose} aria-label="Close">
-          ×
+        <button 
+          className="absolute top-3 right-4 text-xl cursor-pointer text-(--secondary-lighter) 
+          hover:text-(--primary-color) transition-all duration-300" onClick={handleClose}>
+          x
         </button>
 
         <form onSubmit={handleSubmit} className="login-form">
-          <h1 className="login-header switzer-bold">Create an Account</h1>
-          <h3 className="login-subheader switzer-regular">
-            Register to get started
-          </h3>
+          <h1 className="login-header switzer-bold text-4xl mb-2">Create an Account</h1>
+          <h3 className="login-subheader switzer-regular text-xl mb-4">Register to get started</h3>
 
           <label htmlFor="" className="login-child">
             <input
               type="text"
-              className="login-input switzer-regular"
+              className="login-input switzer-regular mb-2"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -80,7 +78,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose }) => {
           <label htmlFor="" className="login-child">
             <input
               type="password"
-              className="login-input switzer-regular"
+              className="login-input switzer-regular mb-2"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -91,7 +89,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose }) => {
           <label htmlFor="" className="login-child">
             <input
               type="password"
-              className="login-input switzer-regular"
+              className="login-input switzer-regular mb-4"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
@@ -100,7 +98,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose }) => {
           </label>
 
           <button type="submit" className="login-button switzer-bold" disabled={isSubmitting}>
-            {isSubmitting ? "Creating Account..." : "Register"}
+            {"Register"}
           </button>
         </form>
       </div>
