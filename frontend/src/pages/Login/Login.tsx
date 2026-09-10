@@ -72,7 +72,7 @@ const Login: React.FC = () => {
                 placeholder="Password"
               />
             </div>
-          <div className="flex mb-4 items-center justify-center">
+          <div className="flex mb-4 items-center">
             <CheckboxComponent
               isChecked={rememberUser}
               setIsChecked={setRememberUser}
