@@ -77,7 +77,7 @@ const Login: React.FC = () => {
               isChecked={rememberUser}
               setIsChecked={setRememberUser}
             />
-            <label className="remember-label switzer-regular ml-2">Remember this user</label>
+            <label className="remember-label switzer-regular ml-2 text-lg">Remember this user</label>
           </div>
 
           <div className="flex flex-col">
