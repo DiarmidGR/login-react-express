@@ -1,8 +1,7 @@
 import "./Login.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import toast, {Toaster, useToasterStore} from "react-hot-toast";
 import RegisterModal from "./RegisterModal";
 import CheckboxComponent from "../../components/Checkbox/Checkbox";
 import {setToken} from "../../utils/Auth";
@@ -15,20 +14,6 @@ const Login: React.FC = () => {
   const [rememberUser, setRememberUser] = useState(() => localStorage.getItem("remembered_username") !== null);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const navigate = useNavigate();
-
-  // Limit the number of visible toasts to 1 (To limit spam issue i had before.)
-  const { toasts } = useToasterStore();
-  const TOAST_LIMIT = 1;
-
-  useEffect(() => {
-    toasts.filter((t) => t.visible).filter((_, i) => i >= TOAST_LIMIT).forEach((t) => toast.remove(t.id));
-  }, [toasts]);
-
-  useEffect(() => {
-    if (new URLSearchParams(window.location.search).get('message') === 'refresh-error') {
-      toast.error('Session expired. Login to continue.');
-    }
-  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,19 +34,27 @@ const Login: React.FC = () => {
       }
 
       navigate("/");
-    } catch (err) {
-      toast.error("Invalid credentials.");
+    } catch (err: any) {
+
+      // Change the console.log lines to whatever, react-hot-toast is a nice option.
+      switch(err.response?.status) {
+        case 401:
+          console.log("Invalid username or password.");
+          break;
+        case 429:
+          console.log("Too many login attempts. Please try again later.");
+          break;
+        default:
+          console.log("An error occurred during login.");
+      }
     }
   };
 
   return (
     <div className="login-layout">
-      <Toaster />
       <div className="login-container">
         <form onSubmit={handleLogin} className="login-form">
           <h1 className="login-header switzer-bold">Login to Your Account</h1>
-          <h3 className="login-subheader switzer-regular">Login to track user progress.</h3>
-          <label htmlFor="" className="login-child">
             <input
               type="text"
               className="login-input switzer-regular"
@@ -70,8 +63,6 @@ const Login: React.FC = () => {
               required
               placeholder="Username"
             />
-          </label>
-          <label htmlFor="" className="login-child">
             <input
               type="password"
               className="login-input switzer-regular"
@@ -80,7 +71,6 @@ const Login: React.FC = () => {
               required
               placeholder="Password"
             />
-          </label>
           <div className="remember-row login-child">
             <CheckboxComponent
               isChecked={rememberUser}
@@ -92,10 +82,7 @@ const Login: React.FC = () => {
         </form>
       </div>
       <div className="register-container">
-        <h1 className="switzer-bold">No account?</h1>
-        <p className="register-message switzer-regular">To track across multiple devices:</p>
         <button className="switzer-bold" onClick={() => setIsRegisterOpen(true)}>Register User</button>
-        <p className="register-message switzer-regular">To track on this device only:</p>
         <button className="guest-button switzer-bold" onClick={() => navigate("/")}>Continue as Guest</button>
       </div>
       <RegisterModal
