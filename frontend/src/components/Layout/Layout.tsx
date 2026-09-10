@@ -16,7 +16,7 @@ const Layout: React.FC = () => {
       </div>
       <div className="layout-footer layout-child switzer-bold">
         © Copyright {currentYear} Diarmid Rendell. All rights reserved.
-        <a href="https://github.com/DiarmidGR/Pokedex-Online" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/DiarmidGR/login-react-express" target="_blank" rel="noopener noreferrer">
           <img src="/icons/github.svg" alt="GitHub" className="github-link" />
         </a>
       </div>
