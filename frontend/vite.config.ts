@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react'
 import dotenv from 'dotenv';
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig(({ mode }) => {
   // Load environment variables based on the environment mode
@@ -9,7 +10,7 @@ export default defineConfig(({ mode }) => {
 
   // Return Vite configuration object
   return {
-    plugins: [react()],
+    plugins: [react(), tailwindcss()],
     define: {
       'process.env': env,
     },
