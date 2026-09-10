@@ -33,6 +33,7 @@
   display:flex;
   font-family: 'Switzer', sans-serif;
   font-weight:400;
+  height:100%;
 }
 
 body, html {
@@ -60,6 +61,7 @@ body, html {
     color: var(--secondary-color);
     border:none;
     padding:0.6em;
+    width: min-content;
 }
 
 .login-input:focus{
@@ -68,20 +70,19 @@ body, html {
 }
 
 /* login page buttons */
-button{
+.login-button{
     text-align:center;
     color:var(--third-light);
     background-color: var(--primary-color);
-    padding:1.1em 2em;
+    padding:1.2em 2em;
     border-radius:30px;
     transition: background-color 0.3s ease;
     cursor:pointer;
     border: 1px transparent solid;
     width:260px;
-    margin: 2em 0em;
     font-size:inherit;
 }
 
-button:hover{
+.login-button:hover{
     background-color: var(--primary-dark);
 }

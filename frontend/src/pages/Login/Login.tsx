@@ -51,43 +51,48 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <div className="login-container">
-        <form onSubmit={handleLogin} className="login-form">
-          <h1 className="login-header switzer-bold text-5xl">Login</h1>
-            <input
-              type="text"
-              className="login-input switzer-regular"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-              placeholder="Username"
-            />
-            <input
-              type="password"
-              className="login-input switzer-regular"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              placeholder="Password"
-            />
-          <div className="remember-row login-child">
+      <div className="login-container flex h-full justify-center items-center text-center">
+        <form onSubmit={handleLogin}>
+          <h1 className="login-header switzer-bold text-5xl mb-4">Login</h1>
+            <div className="flex flex-col">
+              <input
+                type="text"
+                className="login-input switzer-regular mb-4"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                placeholder="Username"
+              />
+              <input
+                type="password"
+                className="login-input switzer-regular mb-4"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Password"
+              />
+            </div>
+          <div className="flex mb-4 items-center justify-center">
             <CheckboxComponent
               isChecked={rememberUser}
               setIsChecked={setRememberUser}
             />
-            <label className="remember-label switzer-regular">Remember this user</label>
+            <label className="remember-label switzer-regular ml-2">Remember this user</label>
           </div>
-          <button type="submit" className="login-button switzer-bold">Sign In</button>
-        </form>
-      </div>
 
-      <button className="switzer-bold" onClick={() => setIsRegisterOpen(true)}>Register User</button>
-      <button className="guest-button switzer-bold" onClick={() => navigate("/")}>Continue as Guest</button>
-      
-      <RegisterModal
-        isOpen={isRegisterOpen}
-        onClose={() => setIsRegisterOpen(false)}
-      />
+          <div className="flex flex-col">
+            <button type="submit" className="login-button switzer-bold mb-2">Sign In</button>
+            <button className="login-button switzer-bold mb-2" onClick={() => setIsRegisterOpen(true)}>Register User</button>
+            <button className="login-button switzer-bold" onClick={() => navigate("/")}>Continue as Guest</button>
+          </div>
+
+        </form>
+        
+        <RegisterModal
+          isOpen={isRegisterOpen}
+          onClose={() => setIsRegisterOpen(false)}
+        />
+      </div>
     </>
   );
 };
