@@ -18,6 +18,9 @@ require('dotenv').config();
 
 app.use('/api/', authRoutes);
 
+// Security middleware
+app.use(helmet());
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
