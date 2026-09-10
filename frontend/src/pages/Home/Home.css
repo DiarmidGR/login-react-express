@@ -1,0 +1,13 @@
+.home-layout{
+    display:flex;
+    flex-direction: column;
+    width:100%;
+}
+
+.home-container {
+    display: flex;
+    color: var(--third-color);
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
